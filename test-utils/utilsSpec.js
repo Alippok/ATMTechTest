@@ -55,7 +55,7 @@ describe( 'Utils', () => {
       it( 'checks that an amount is within a range', () => {
         const withdraw = 220;
         expect( Utils.isValueWithinRange( withdraw, stateLess.minWithdraw, stateLess.maxWithdraw ))
-          .to.eq( 'true' );
+          .to.eq( true );
       });
       it( 'throws an error if the amount is bigger than 300', () => {
         const withdraw = 320;
