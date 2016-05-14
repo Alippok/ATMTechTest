@@ -50,7 +50,7 @@ describe( 'Utils', () => {
 
     describe( 'isValueWithinRange', () => {
       it( 'is defined', () => {
-        expect( Utils.isValueWithinRange ).t0.eq( undefined );
+        expect( Utils.isValueWithinRange ).not.eq( undefined );
       });
       it( 'checks that an amount is within a range', () => {
         const withdraw = 220;
