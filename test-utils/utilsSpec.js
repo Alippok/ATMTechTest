@@ -138,7 +138,7 @@ describe( 'Utils', () => {
       });
       it( 'gives one note of each when is possible, £170', () => {
         const withdraw = 170;
-        const result = { 50: { count: 2 }, 20: { count: 2 }, 10: { count: 3 } };
+        const result = { 50: { count: 3 }, 20: { count: 2 }, 10: { count: 3 } };
         expect( Utils.calculateCountNotes( withdraw, activeState )).to.eql( result );
       });
       it( 'gives one note of each when is possible, £80', () => {

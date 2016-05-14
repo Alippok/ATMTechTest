@@ -87,16 +87,59 @@ const Utils = {
    * "./src/components/atm.js" is the parent component for this React app,
    * there you can understand more how this app works.
    */
+
+  checkAmountsOfFiftyInNumber( withdraw ) {
+    withdraw -= 50 
+    return withdraw;
+  },
+
   calculateCountNotes( withdraw, props ) {
     // console.log("object", props.atmData.notesContainer)C
     var result = props.atmData.notesContainer;
+    var fiftyNotesNeeded = 0;
+    var twentyNotesNeeded = 0;
+    var tenNotesNeeded = 0;
+    var fiftyIterationCount = 0;
+    var twentyIterationCount = 0;
+    var tenIterationCount = 0;
+    
+    result['50'].count = 0;
+    result['20'].count = 0;
+    result['10'].count = 0;
+    
+    while(withdraw > 0){
+      console.log("withdraw amount start: ", withdraw)
+      if(withdraw - 50 < 0 ){
 
-    if(withdraw - 50 == 0){
-      result['50'].count = 1;
-      result['20'].count = 0;
-      result['10'].count = 0;
+        if(withdraw - 20 < 0){
+
+          if(withdraw - 10 < 0){
+            console.log("CANT TAKE 10")
+            
+            return result
+          } else {
+            console.log("TAKING 10")
+            withdraw -= 10 
+            result['10'].count +=1
+            console.log("ten iteration count: ", result['10'].count )
+          }  
+
+        } else {
+          withdraw -= 20;
+          result['20'].count +=1;
+          console.log("twenty iteration count: ", result['20'].count);
+
+        }  
+
+      } else {
+      withdraw -= 50;
+      result['50'].count +=1;
+      console.log("fifty iteration number: ", result['50'].count)
+      }
     }
+    console.log(result)
     return result;
+   
   },
 
   /**
