@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## Prerequisites
 
 [Node.js](http://nodejs.org/) must be installed.
@@ -68,3 +69,6 @@ Here you can see the structure for this repo:
 **Under the hood, this app is using [`nwb`](https://github.com/insin/nwb). A npm package that helps developers to built and setup Javascript projects. Some of the available scripts mentioned above are mapped to `nwb` commands**.
 
 **For more information see the `package.json` file or run the `nwb` command on your terminal**
+=======
+# ATMTechTest
+>>>>>>> fc17c726fb396d6251efecd532bfec5704998707
