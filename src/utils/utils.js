@@ -88,6 +88,8 @@ const Utils = {
    * there you can understand more how this app works.
    */
   calculateCountNotes( withdraw, props ) {
+    // console.log("object", props.atmData.notesContainer)
+    return props.atmData.notesContainer;
   },
 
   /**
