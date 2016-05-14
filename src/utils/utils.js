@@ -12,7 +12,13 @@ const Utils = {
    * @return {Boolean}          -  true if is equals 0
    */
   isMultipleOf( withdraw, multiple ) {
-    return withdraw % multiple !== 0;
+    if(withdraw % multiple == 0){
+      return true;
+    } else 
+    {
+      return false
+    }
+    // return withdraw % multiple !== 0;
   },
 
   /**

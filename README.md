@@ -1,7 +1,7 @@
 ## Alasdair Lippok
 
 * Began work by cloning from GutHub repo and then creating my own repo
-
+* I then moved onto looking at the different components and sketching out a rough design of the 'flow' of the app
 
 
 
