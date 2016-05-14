@@ -47,6 +47,9 @@ const Utils = {
 
   getSumCountNotes( notesContainer ) {
     return _.reduce( notesContainer, ( result, value, key ) => {
+      // console.log("result", result)
+      // console.log("value", value)
+      // console.log("key", key)
       result += ( value.count * key );
       return result;
     }, 0 );
