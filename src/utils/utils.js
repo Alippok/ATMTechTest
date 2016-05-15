@@ -94,51 +94,52 @@ const Utils = {
   },
 
   calculateCountNotes( withdraw, props ) {
-    // console.log("object", props.atmData.notesContainer)C
-    var result = props.atmData.notesContainer;
-    var fiftyNotesNeeded = 0;
-    var twentyNotesNeeded = 0;
-    var tenNotesNeeded = 0;
-    var fiftyIterationCount = 0;
-    var twentyIterationCount = 0;
-    var tenIterationCount = 0;
+    // console.log("object", props.atmData.notesContainer)
+    var originalObject = props.atmData.notesContainer;
+    var resultObject = {'10':{ count: 0}, '20':{count: 0}, '50':{count: 0}}
+    // var fiftyNotesNeeded = 0;
+    // var twentyNotesNeeded = 0;
+    // var tenNotesNeeded = 0;
+    // var fiftyIterationCount = 0;
+    // var twentyIterationCount = 0;
+    // var tenIterationCount = 0;
     
-    result['50'].count = 0;
-    result['20'].count = 0;
-    result['10'].count = 0;
+    // resultObject['50'].count = 0;
+    // resultObject['20'].count = 0;
+    // resultObject['10'].count = 0;
     
     while(withdraw > 0){
-      console.log("withdraw amount start: ", withdraw)
-      if(withdraw - 50 < 0 ){
+      // console.log("withdraw amount start: ", withdraw)
+      console.log("fifty count: ", originalObject['50'].count)
+      if(withdraw - 50 < 0 || originalObject['50'].count == 0 || resultObject['50'].count == 2){
 
-        if(withdraw - 20 < 0){
+        if(withdraw - 20 < 0 || originalObject['20'].count == 0 || resultObject['20'].count == 3 || resultObject['10'].count == 0 ){
 
           if(withdraw - 10 < 0){
-            console.log("CANT TAKE 10")
-            
+            // console.log("CANT TAKE 10")
             return result
           } else {
-            console.log("TAKING 10")
-            withdraw -= 10 
-            result['10'].count +=1
-            console.log("ten iteration count: ", result['10'].count )
+            // console.log("TAKING 10")
+            withdraw -= 10;
+            resultObject['10'].count += 1;
+            // console.log("ten iteration count: ", result['10'].count )
           }  
 
         } else {
           withdraw -= 20;
-          result['20'].count +=1;
-          console.log("twenty iteration count: ", result['20'].count);
+          resultObject['20'].count += 1;
+          // console.log("twenty iteration count: ", result['20'].count);
 
         }  
 
       } else {
       withdraw -= 50;
-      result['50'].count +=1;
-      console.log("fifty iteration number: ", result['50'].count)
+      resultObject['50'].count += 1;
+      
       }
     }
-    console.log(result)
-    return result;
+    console.log(resultObject)
+    return resultObject;
    
   },
 
