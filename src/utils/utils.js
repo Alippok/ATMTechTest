@@ -110,14 +110,16 @@ const Utils = {
     
     while(withdraw > 0){
       // console.log("withdraw amount start: ", withdraw)
-      console.log("fifty count: ", originalObject['50'].count)
+      // console.log("fifty count: ", originalObject['50'].count)
       if(withdraw - 50 < 0 || originalObject['50'].count == 0 || resultObject['50'].count == 2){
 
-        if(withdraw - 20 < 0 || originalObject['20'].count == 0 || resultObject['20'].count == 3 || resultObject['10'].count == 0 ){
+        if(withdraw - 20 < 0 || originalObject['20'].count == 0 || resultObject['20'].count - resultObject['10'].count >= 1 ){
 
-          if(withdraw - 10 < 0){
-            // console.log("CANT TAKE 10")
-            return result
+          if(withdraw - 10 < 0 || originalObject['10'].count == 0){
+            console.log("current 20 count", resultObject['20'].count)
+            withdraw -= 20;
+            resultObject['20'].count += 1;
+                        
           } else {
             // console.log("TAKING 10")
             withdraw -= 10;
@@ -129,7 +131,6 @@ const Utils = {
           withdraw -= 20;
           resultObject['20'].count += 1;
           // console.log("twenty iteration count: ", result['20'].count);
-
         }  
 
       } else {
@@ -138,7 +139,7 @@ const Utils = {
       
       }
     }
-    console.log(resultObject)
+    // console.log(resultObject)
     return resultObject;
    
   },
@@ -156,7 +157,7 @@ const Utils = {
     const notes50Used = _.get( withdrawnNotes, '50' );
     const notes20Used = _.get( withdrawnNotes, '20' );
     const notes10Used = _.get( withdrawnNotes, '10' );
-
+    console.log("withdrawn notes", withdrawnNotes)
     const notes50available = _.get( availableNotes, '50' );
     const notes20available = _.get( availableNotes, '20' );
     const notes10available = _.get( availableNotes, '10' );
