@@ -206,7 +206,7 @@ describe( 'Utils', () => {
 
     describe( 'getValidationMessage', () => {
       it( 'is defined', () => {
-        expect( Utils.getValidationMessage ).to.eq( 'undefined' );
+        expect( Utils.getValidationMessage ).not.eq( undefined );
       });
       it( 'returns a String', () => {
         const mockedValidation = getRandomValueToMock( validationObject );

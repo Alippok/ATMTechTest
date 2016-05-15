@@ -88,10 +88,7 @@ const Utils = {
    * there you can understand more how this app works.
    */
 
-  checkAmountsOfFiftyInNumber( withdraw ) {
-    withdraw -= 50 
-    return withdraw;
-  },
+
 
   calculateCountNotes( withdraw, props ) {
     // console.log("object", props.atmData.notesContainer)
@@ -116,7 +113,7 @@ const Utils = {
         if(withdraw - 20 < 0 || originalObject['20'].count == 0 || resultObject['20'].count - resultObject['10'].count >= 1 ){
 
           if(withdraw - 10 < 0 || originalObject['10'].count == 0){
-            console.log("current 20 count", resultObject['20'].count)
+            // console.log("current 20 count", resultObject['20'].count)
             withdraw -= 20;
             resultObject['20'].count += 1;
                         
@@ -139,7 +136,7 @@ const Utils = {
       
       }
     }
-    // console.log(resultObject)
+    // console.log(resultObject)c
     return resultObject;
    
   },
@@ -157,7 +154,7 @@ const Utils = {
     const notes50Used = _.get( withdrawnNotes, '50' );
     const notes20Used = _.get( withdrawnNotes, '20' );
     const notes10Used = _.get( withdrawnNotes, '10' );
-    console.log("withdrawn notes", withdrawnNotes)
+    // console.log("withdrawn notes", withdrawnNotes)
     const notes50available = _.get( availableNotes, '50' );
     const notes20available = _.get( availableNotes, '20' );
     const notes10available = _.get( availableNotes, '10' );
@@ -204,12 +201,14 @@ const Utils = {
    * @return {String} - Message that depends on the url passed
    */
   getScreenMessage( props ) {
+    // console.log(props.atmData.user.name)
     const screenMsg = {
       '/': `Hello, ${props.atmData.user.name}, welcome to iDotBank`,
       '/withdraw': `${props.atmData.user.name}, do your withdraw`,
       '/balance': 'Balance screen'
     };
-
+    // console.log(screenMsg)
+    // console.log(screenMsg[props.location.pathname])
     return screenMsg[ props.location.pathname ];
   },
 
