@@ -250,7 +250,7 @@ export default class Atm extends Component {
    * @return {Object} - New Component's state
    */
   calculateWithdrawnNotes( withdraw, props ) {
-    const withdrawnNotes = Utils.calculateCountNotes( withdraw, props );
+    const withdrawnNotes = Utils.calculateCountNotes( withdraw, props.atmData.notesContainer );
     const availableNotes = props.atmData.notesContainer;
 
     const newCountNotes = Utils.subtractCountFromTotal( withdrawnNotes, availableNotes );
