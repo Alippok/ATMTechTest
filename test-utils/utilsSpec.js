@@ -237,6 +237,13 @@ describe( 'Utils', () => {
 
         expect( Utils.getScreenMessage( activeState )).to.eq( messageValue );
       });
+
+      describe( 'areAnyNotesLeft', () => {
+        it( 'is defined', () => {
+          expect( Utils.areAnyNotesLeft ).not.eq( undefined );
+        });
+
+      });
     });
   });
 });
