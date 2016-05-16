@@ -106,22 +106,22 @@ describe( 'Utils', () => {
         expect( Utils.calculateCountNotes ).not.eq( undefined );
       });
       it( 'returns an object', () => {
-        expect( Utils.calculateCountNotes( 50, activeState )).to.be.an( 'Object' );
+        expect( Utils.calculateCountNotes( 50, notesContainer )).to.be.an( 'Object' );
       });
       it( 'returns an object with a property named "50"', () => {
-        expect( Utils.calculateCountNotes( 50, activeState )).to.have.property( '50' )
+        expect( Utils.calculateCountNotes( 50, notesContainer )).to.have.property( '50' )
           .that.is.an( 'Object' )
           .with.property( 'count' )
           .that.is.a( 'Number' );
       });
       it( 'returns an object with a property named "20"', () => {
-        expect( Utils.calculateCountNotes( 20, activeState )).to.have.property( '20' )
+        expect( Utils.calculateCountNotes( 20, notesContainer )).to.have.property( '20' )
           .that.is.an( 'Object' )
           .with.property( 'count' )
           .that.is.a( 'Number' );
       });
       it( 'returns an object with a property named "10"', () => {
-        expect( Utils.calculateCountNotes( 10, activeState )).to.have.property( '10' )
+        expect( Utils.calculateCountNotes( 10, notesContainer )).to.have.property( '10' )
           .that.is.an( 'Object' )
           .with.property( 'count' )
           .that.is.a( 'Number' );
@@ -129,36 +129,36 @@ describe( 'Utils', () => {
       it( 'gives one note of each when is possible, £50', () => {
         const withdraw = 50;
         const result = { 50: { count: 1 }, 20: { count: 0 }, 10: { count: 0 } };
-        expect( Utils.calculateCountNotes( withdraw, activeState )).to.eql( result );
+        expect( Utils.calculateCountNotes( withdraw, notesContainer )).to.eql( result );
       });
       it( 'gives one note of each when is possible, £80', () => {
         const withdraw = 80;
         const result = { 50: { count: 1 }, 20: { count: 1 }, 10: { count: 1 } };
-        expect( Utils.calculateCountNotes( withdraw, activeState )).to.eql( result );
+        expect( Utils.calculateCountNotes( withdraw, notesContainer )).to.eql( result );
       });
 
       it( 'gives one note of each when is possible, £170', () => {
         const withdraw = 170;
         const result = { 50: { count: 2 }, 20: { count: 2 }, 10: { count: 3 } };
-        expect( Utils.calculateCountNotes( withdraw, activeState )).to.eql( result );
+        expect( Utils.calculateCountNotes( withdraw, notesContainer )).to.eql( result );
       });
 
       it( 'gives one note of each when is possible, £80', () => {
         notesContainer[ '50' ].count = 0;
         const withdraw = 80;
         const result = { 50: { count: 0 }, 20: { count: 3 }, 10: { count: 2 } };
-        expect( Utils.calculateCountNotes( withdraw, activeState )).to.eql( result );
+        expect( Utils.calculateCountNotes( withdraw, notesContainer )).to.eql( result );
       });
       it( 'gives one note of each when is possible, £130', () => {
         notesContainer[ '20' ].count = 0;
         const withdraw = 130;
         const result = { 50: { count: 2 }, 20: { count: 0 }, 10: { count: 3 } };
-        expect( Utils.calculateCountNotes( withdraw, activeState )).to.eql( result );
+        expect( Utils.calculateCountNotes( withdraw, notesContainer )).to.eql( result );
       });
       it( 'gives one note of each when is possible, £30', () => {
         const withdraw = 30;
         const result = { 50: { count: 0 }, 20: { count: 1 }, 10: { count: 1 } };
-        expect( Utils.calculateCountNotes( withdraw, activeState )).to.eql( result );
+        expect( Utils.calculateCountNotes( withdraw, notesContainer )).to.eql( result );
       });
       it( 'returns false if no notes available, £30', () => {
         const withdraw = 30;
@@ -166,7 +166,7 @@ describe( 'Utils', () => {
         notesContainer[ '20' ].count = 0;
         notesContainer[ '10' ].count = 0;
         const result = false;
-        expect( Utils.calculateCountNotes( withdraw, activeState )).to.eql( result );
+        expect( Utils.calculateCountNotes( withdraw, notesContainer )).to.eql( result );
       });
     });
 
@@ -176,13 +176,13 @@ describe( 'Utils', () => {
       });
 
       it( 'subtracts the total count used for that specific note. Withdraw £10', () => {
-        const withdraw = Utils.calculateCountNotes( 10, activeState );
+        const withdraw = Utils.calculateCountNotes( 10, notesContainer );
         const newNotesAmount = Utils.subtractCountFromTotal( withdraw, notesContainer );
 
         expect( newNotesAmount[ '10' ].count ).to.eql( 19 );
       });
       it( 'subtracts the total count used for that specific note. Withdraw £80', () => {
-        const withdraw = Utils.calculateCountNotes( 80, activeState );
+        const withdraw = Utils.calculateCountNotes( 80, notesContainer );
         const newNotesAmount = Utils.subtractCountFromTotal( withdraw, notesContainer );
 
         expect( newNotesAmount[ '50' ].count ).to.eq( 9 );
@@ -190,7 +190,7 @@ describe( 'Utils', () => {
         expect( newNotesAmount[ '10' ].count ).to.eq( 19 );
       });
       it( 'subtracts the total count used for that specific note. Withdraw £170', () => {
-        const withdraw = Utils.calculateCountNotes( 170, activeState );
+        const withdraw = Utils.calculateCountNotes( 170, notesContainer );
         const newNotesAmount = Utils.subtractCountFromTotal( withdraw, notesContainer );
 
         expect( newNotesAmount[ '50' ].count ).to.eq( 8 );
@@ -199,7 +199,7 @@ describe( 'Utils', () => {
       });
       it( 'subtracts the total count used for that specific note. Withdraw £150', () => {
         notesContainer[ '50' ].count = 0;
-        const withdraw = Utils.calculateCountNotes( 150, activeState );
+        const withdraw = Utils.calculateCountNotes( 150, notesContainer );
         const newNotesAmount = Utils.subtractCountFromTotal( withdraw, notesContainer );
 
         expect( newNotesAmount[ '50' ].count ).to.eq( 0 );
@@ -208,7 +208,7 @@ describe( 'Utils', () => {
       });
       it( 'subtracts the total count used for that specific note. Withdraw £180', () => {
         notesContainer[ '10' ].count = 0;
-        const withdraw = Utils.calculateCountNotes( 180, activeState );
+        const withdraw = Utils.calculateCountNotes( 180, notesContainer );
         const newNotesAmount = Utils.subtractCountFromTotal( withdraw, notesContainer );
 
         expect( newNotesAmount[ '50' ].count ).to.eq( 8 );
@@ -259,14 +259,14 @@ describe( 'Utils', () => {
 
       it( 'should return true for withdraw £80', () => {
                    
-        expect( Utils.areAnyNotesLeft(80, activeState)).to.eq( true );
+        expect( Utils.areAnyNotesLeft(80, notesContainer)).to.eq( true );
 
       });
 
       it( 'should return false if not enough notes for withdraw amount £30', () => {
         notesContainer[ '10' ].count = 0;
         notesContainer[ '20' ].count = 0;
-        expect( Utils.areAnyNotesLeft(30, activeState)).to.eq( false );
+        expect( Utils.areAnyNotesLeft(30, notesContainer)).to.eq( false );
 
       });
 

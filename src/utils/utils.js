@@ -77,10 +77,10 @@ const Utils = {
     }
   },
 
-  areAnyNotesLeft( withdraw, props ) {
+  areAnyNotesLeft( withdraw, notesContainer ) {
     const results = []
-    const container = props.atmData.notesContainer;
-    const requiredNotes = this.calculateCountNotes(withdraw, props);
+    const container = notesContainer;
+    const requiredNotes = this.calculateCountNotes(withdraw, notesContainer);
     if(requiredNotes == false){
       return false;
     } else {
@@ -126,9 +126,9 @@ const Utils = {
 
 
 
-  calculateCountNotes( withdraw, props ) {
+  calculateCountNotes( withdraw, notesContainer ) {
     
-    var originalObject = props.atmData.notesContainer;
+    var originalObject = notesContainer;
     var resultObject = {'10':{ count: 0}, '20':{count: 0}, '50':{count: 0}}
       
     while(withdraw > 0){
