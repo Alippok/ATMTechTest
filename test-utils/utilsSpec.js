@@ -243,7 +243,22 @@ describe( 'Utils', () => {
           expect( Utils.areAnyNotesLeft ).not.eq( undefined );
         });
 
+        it( 'should return true for withdraw £80', () => {
+          
+          
+          expect( Utils.areAnyNotesLeft(80, activeState)).to.eq( true );
+
+        });
+
       });
+
+      describe( 'compareFiftyNotes', () => {
+        it( 'is defined', () => {
+          expect ( Utils.compareFiftyNotes ).not.eq( undefined );
+        });
+      });
+
+
     });
   });
 });

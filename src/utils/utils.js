@@ -69,7 +69,16 @@ const Utils = {
    * so an error can be returned for the availability validation.
    *
    */
-  areAnyNotesLeft( withdraw, notesContainer ) {
+  compareFiftyNotes(requiredNotesAmount, currentNotesAmount) {
+  },
+
+  areAnyNotesLeft( withdraw, props ) {
+    
+    const container = props.atmData.notesContainer;
+    const requiredNotes = this.calculateCountNotes(withdraw, props);
+    
+    // console.log(requiredNotes)
+    // console.log(container)
   },
 
   /** TODO Implement this method
