@@ -263,6 +263,12 @@ describe( 'Utils', () => {
         expect ( Utils.compareNotesAmounts(requiredNotes, currentNotesAmount )).to.eq( true );
       });
 
+      it( 'should return false if difference between current notes amount and required notes amount is a negative number', () => {
+        const requiredNotes = 7;
+        const currentNotesAmount = 2;
+        expect ( Utils.compareNotesAmounts(requiredNotes, currentNotesAmount )).to.eq( false );
+      });
+
     });
 
 

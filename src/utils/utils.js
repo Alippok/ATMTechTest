@@ -70,8 +70,10 @@ const Utils = {
    *
    */
   compareNotesAmounts(requiredNotesAmount, currentNotesAmount) {
-    if(currentNotesAmount - requiredNotesAmount){
+    if(currentNotesAmount - requiredNotesAmount >= 0){
       return true;
+    } else {
+      return false;
     }
   },
 
