@@ -78,12 +78,34 @@ const Utils = {
   },
 
   areAnyNotesLeft( withdraw, props ) {
-    
+    const results = []
     const container = props.atmData.notesContainer;
     const requiredNotes = this.calculateCountNotes(withdraw, props);
+    if(requiredNotes == false){
+      return false;
+    } else {
+      const requiredTenNotes = requiredNotes['10'].count;
+      const requiredTwentyNotes = requiredNotes['20'].count;
+      const requiredFiftyNotes = requiredNotes['50'].count;
     
-    // console.log(requiredNotes)
-    // console.log(container)
+      const currentTenNotes = container['10'].count;
+      const currentTwentyNotes = container['20'].count;
+      const currentFiftyNotes = container['50'].count;
+      // console.log("current ten notes: ", currentTenNotes)
+      // console.log("required ten notes: ", requiredTenNotes)
+
+      results.push(this.compareNotesAmounts(requiredTenNotes, currentTenNotes))
+      results.push(this.compareNotesAmounts(requiredTwentyNotes, currentTwentyNotes))
+      results.push(this.compareNotesAmounts(requiredFiftyNotes, currentFiftyNotes))
+
+      // console.log(results)
+      if(results.includes(false)){
+        return false;
+       } else {
+        return true;
+      }
+    }
+    
   },
 
   /** TODO Implement this method
@@ -105,20 +127,10 @@ const Utils = {
 
 
   calculateCountNotes( withdraw, props ) {
-    // console.log("object", props.atmData.notesContainer)
+    
     var originalObject = props.atmData.notesContainer;
     var resultObject = {'10':{ count: 0}, '20':{count: 0}, '50':{count: 0}}
-    // var fiftyNotesNeeded = 0;
-    // var twentyNotesNeeded = 0;
-    // var tenNotesNeeded = 0;
-    // var fiftyIterationCount = 0;
-    // var twentyIterationCount = 0;
-    // var tenIterationCount = 0;
-    
-    // resultObject['50'].count = 0;
-    // resultObject['20'].count = 0;
-    // resultObject['10'].count = 0;
-    
+      
     while(withdraw > 0){
       // console.log("withdraw amount start: ", withdraw)
       // console.log("fifty count: ", originalObject['50'].count)
@@ -128,9 +140,13 @@ const Utils = {
 
           if(withdraw - 10 < 0 || originalObject['10'].count == 0){
             // console.log("current 20 count", resultObject['20'].count)
-            withdraw -= 20;
-            resultObject['20'].count += 1;
-                        
+            if(withdraw - 20 < 0){
+              return false
+            } else {
+              withdraw -= 20;
+              resultObject['20'].count += 1;
+            }
+                                    
           } else {
             // console.log("TAKING 10")
             withdraw -= 10;
@@ -150,7 +166,7 @@ const Utils = {
       
       }
     }
-    // console.log(resultObject)c
+    // console.log(resultObject)
     return resultObject;
    
   },

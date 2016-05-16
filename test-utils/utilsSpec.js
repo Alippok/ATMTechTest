@@ -155,6 +155,19 @@ describe( 'Utils', () => {
         const result = { 50: { count: 2 }, 20: { count: 0 }, 10: { count: 3 } };
         expect( Utils.calculateCountNotes( withdraw, activeState )).to.eql( result );
       });
+      it( 'gives one note of each when is possible, £30', () => {
+        const withdraw = 30;
+        const result = { 50: { count: 0 }, 20: { count: 1 }, 10: { count: 1 } };
+        expect( Utils.calculateCountNotes( withdraw, activeState )).to.eql( result );
+      });
+      it( 'returns false if no notes available, £30', () => {
+        const withdraw = 30;
+        notesContainer[ '50' ].count = 0;
+        notesContainer[ '20' ].count = 0;
+        notesContainer[ '10' ].count = 0;
+        const result = false;
+        expect( Utils.calculateCountNotes( withdraw, activeState )).to.eql( result );
+      });
     });
 
     describe( 'subtractCountFromTotal', () => {
@@ -250,6 +263,13 @@ describe( 'Utils', () => {
 
       });
 
+      it( 'should return false if not enough notes for withdraw amount £30', () => {
+        notesContainer[ '10' ].count = 0;
+        notesContainer[ '20' ].count = 0;
+        expect( Utils.areAnyNotesLeft(30, activeState)).to.eq( false );
+
+      });
+
     });
 
     describe( 'compareNotesAmounts', () => {
@@ -273,6 +293,12 @@ describe( 'Utils', () => {
         const requiredNotes = 7;
         const currentNotesAmount = 7;
         expect (Utils.compareNotesAmounts(requiredNotes, currentNotesAmount )).to.eq( true );
+      });
+
+      it('should return false if current notes amount is 0', () => {
+        const requiredNotes = 7;
+        const currentNotesAmount = 0;
+        expect (Utils.compareNotesAmounts(requiredNotes, currentNotesAmount )).to.eq( false );
       });
 
     });
