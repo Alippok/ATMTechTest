@@ -69,7 +69,7 @@ const Utils = {
    * so an error can be returned for the availability validation.
    *
    */
-  compareFiftyNotes(requiredNotesAmount, currentNotesAmount) {
+  compareNotesAmounts(requiredNotesAmount, currentNotesAmount) {
     if(currentNotesAmount - requiredNotesAmount){
       return true;
     }

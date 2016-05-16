@@ -252,15 +252,15 @@ describe( 'Utils', () => {
 
     });
 
-    describe( 'compareFiftyNotes', () => {
+    describe( 'compareNotesAmounts', () => {
       it( 'is defined', () => {
-        expect ( Utils.compareFiftyNotes ).not.eq( undefined );
+        expect ( Utils.compareNotesAmounts ).not.eq( undefined );
       });
 
       it( 'should return true if difference between current notes amount and required notes amount is a positive number', () => {
         const requiredNotes = 5;
         const currentNotesAmount = 8;
-        expect ( Utils.compareFiftyNotes(requiredNotes, currentNotesAmount )).to.eq( true );
+        expect ( Utils.compareNotesAmounts(requiredNotes, currentNotesAmount )).to.eq( true );
       });
 
     });
