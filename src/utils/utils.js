@@ -70,6 +70,9 @@ const Utils = {
    *
    */
   compareFiftyNotes(requiredNotesAmount, currentNotesAmount) {
+    if(currentNotesAmount - requiredNotesAmount){
+      return true;
+    }
   },
 
   areAnyNotesLeft( withdraw, props ) {

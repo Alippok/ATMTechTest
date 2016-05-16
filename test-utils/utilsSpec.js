@@ -237,28 +237,35 @@ describe( 'Utils', () => {
 
         expect( Utils.getScreenMessage( activeState )).to.eq( messageValue );
       });
-
-      describe( 'areAnyNotesLeft', () => {
-        it( 'is defined', () => {
-          expect( Utils.areAnyNotesLeft ).not.eq( undefined );
-        });
-
-        it( 'should return true for withdraw £80', () => {
-          
-          
-          expect( Utils.areAnyNotesLeft(80, activeState)).to.eq( true );
-
-        });
-
+    });
+    
+    describe( 'areAnyNotesLeft', () => {
+      it( 'is defined', () => {
+        expect( Utils.areAnyNotesLeft ).not.eq( undefined );
       });
 
-      describe( 'compareFiftyNotes', () => {
-        it( 'is defined', () => {
-          expect ( Utils.compareFiftyNotes ).not.eq( undefined );
-        });
-      });
+      it( 'should return true for withdraw £80', () => {
+                   
+        expect( Utils.areAnyNotesLeft(80, activeState)).to.eq( true );
 
+      });
 
     });
+
+    describe( 'compareFiftyNotes', () => {
+      it( 'is defined', () => {
+        expect ( Utils.compareFiftyNotes ).not.eq( undefined );
+      });
+
+      it( 'should return true if difference between current notes amount and required notes amount is a positive number', () => {
+        const requiredNotes = 5;
+        const currentNotesAmount = 8;
+        expect ( Utils.compareFiftyNotes(requiredNotes, currentNotesAmount )).to.eq( true );
+      });
+
+    });
+
+
+    
   });
 });
