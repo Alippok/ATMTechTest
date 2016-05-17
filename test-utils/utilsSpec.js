@@ -259,8 +259,13 @@ describe( 'Utils', () => {
         const result = "£10 "
         expect( Utils.getAvailableNotes(notesContainer)).to.deep.equal(result);
       });
-      it( 'returns a String of notes that were available', () => {
+      it( 'returns a String of only notes that were available. All avalibale', () => {
         const result = "£50 £20 £10 ";
+        expect( Utils.getAvailableNotes(notesContainer)).to.deep.equal(result);
+      });
+      it( 'returns a String of only notes that were available. £50 and £10 available', () => {
+        const result = "£50 £10 ";
+        notesContainer['20'].count = 0;
         expect( Utils.getAvailableNotes(notesContainer)).to.deep.equal(result);
       });
     });

@@ -103,7 +103,7 @@ const Utils = {
     results.push(this.compareNotesAmounts(requiredTwentyNotes, currentTwentyNotes))
     results.push(this.compareNotesAmounts(requiredFiftyNotes, currentFiftyNotes))
 
-    console.log(results)
+    // console.log(results)
     if(results.includes(false)){
       return false;
     } else {
@@ -310,7 +310,7 @@ const Utils = {
     const notes50Used = _.get( withdrawnNotes, '50' );
     const notes20Used = _.get( withdrawnNotes, '20' );
     const notes10Used = _.get( withdrawnNotes, '10' );
-    console.log("withdrawn notes", withdrawnNotes)
+    // console.log("withdrawn notes", withdrawnNotes)
     const notes50available = _.get( availableNotes, '50' );
     const notes20available = _.get( availableNotes, '20' );
     const notes10available = _.get( availableNotes, '10' );
