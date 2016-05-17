@@ -34,13 +34,13 @@ export default class Atm extends Component {
       withdrawAmount: '',
       notesContainer: {
         50: {
-          count: 10
+          count: 8
         },
         20: {
-          count: 20
+          count: 4
         },
         10: {
-          count: 20
+          count: 0
         }
       },
       withdrawnNotes: Utils.displayWithdrawnCount({})

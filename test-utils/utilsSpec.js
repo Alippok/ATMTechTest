@@ -160,12 +160,12 @@ describe( 'Utils', () => {
         const result = { 50: { count: 0 }, 20: { count: 1 }, 10: { count: 1 } };
         expect( Utils.calculateCountNotes( withdraw, notesContainer )).to.eql( result );
       });
-      it( 'returns false if no notes available, £30', () => {
+      it( 'returns object with 0 count for each note type if no notes available, £30', () => {
         const withdraw = 30;
         notesContainer[ '50' ].count = 0;
         notesContainer[ '20' ].count = 0;
         notesContainer[ '10' ].count = 0;
-        const result = false;
+        const result = { 50: { count: 0 }, 20: { count: 0 }, 10: { count: 0 } };
         expect( Utils.calculateCountNotes( withdraw, notesContainer )).to.eql( result );
       });
     });

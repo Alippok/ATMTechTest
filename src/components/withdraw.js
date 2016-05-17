@@ -59,7 +59,7 @@ export default class Withdraw extends Component {
   // Handle when the keyup event is fired, on the input field
   handleKeyUp( event ) {
     const amount = Number( event.target.value );
-
+    // console.log("Key up")
     if ( typeof amount !== 'number' ) {
       return;
     }

@@ -70,7 +70,7 @@ const Utils = {
    *
    */
   compareNotesAmounts(requiredNotesAmount, currentNotesAmount) {
-    if(currentNotesAmount - requiredNotesAmount >= 0){
+    if(currentNotesAmount - requiredNotesAmount > 0){
       return true;
     } else {
       return false;
@@ -91,14 +91,17 @@ const Utils = {
       const currentTenNotes = container['10'].count;
       const currentTwentyNotes = container['20'].count;
       const currentFiftyNotes = container['50'].count;
-      // console.log("current ten notes: ", currentTenNotes)
-      // console.log("required ten notes: ", requiredTenNotes)
+      console.log("current ten notes: ", currentTenNotes)
+      console.log("current twenty notes: ", currentTwentyNotes)
+      console.log("current fifty notes: ", currentFiftyNotes)
+
+      console.log("required ten notes: ", requiredTenNotes)
 
       results.push(this.compareNotesAmounts(requiredTenNotes, currentTenNotes))
       results.push(this.compareNotesAmounts(requiredTwentyNotes, currentTwentyNotes))
       results.push(this.compareNotesAmounts(requiredFiftyNotes, currentFiftyNotes))
 
-      // console.log(results)
+      console.log(results)
       if(results.includes(false)){
         return false;
        } else {
@@ -124,52 +127,125 @@ const Utils = {
    * there you can understand more how this app works.
    */
 
+   // Oiginal methods below but refactored to one method takeAmountFromWithdraw
+  // takeFiftyFromAmount(amount) {
+  //   if(amount - 50 >= 0){
+  //     amount -= 50;
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }   
+  // },
 
+  // takeTwentyFromAmount(amount) {
+  //   if(amount - 20 >= 0){
+  //     amount -= 20;
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }   
+  // },
 
-  calculateCountNotes( withdraw, notesContainer ) {
-    
-    var originalObject = notesContainer;
-    var resultObject = {'10':{ count: 0}, '20':{count: 0}, '50':{count: 0}}
-      
-    while(withdraw > 0){
-      // console.log("withdraw amount start: ", withdraw)
-      // console.log("fifty count: ", originalObject['50'].count)
-      if(withdraw - 50 < 0 || originalObject['50'].count == 0 || resultObject['50'].count == 2){
-
-        if(withdraw - 20 < 0 || originalObject['20'].count == 0 || resultObject['20'].count - resultObject['10'].count >= 1 ){
-
-          if(withdraw - 10 < 0 || originalObject['10'].count == 0){
-            // console.log("current 20 count", resultObject['20'].count)
-            if(withdraw - 20 < 0){
-              return false
-            } else {
-              withdraw -= 20;
-              resultObject['20'].count += 1;
-            }
-                                    
-          } else {
-            // console.log("TAKING 10")
-            withdraw -= 10;
-            resultObject['10'].count += 1;
-            // console.log("ten iteration count: ", result['10'].count )
-          }  
-
-        } else {
-          withdraw -= 20;
-          resultObject['20'].count += 1;
-          // console.log("twenty iteration count: ", result['20'].count);
-        }  
-
-      } else {
-      withdraw -= 50;
-      resultObject['50'].count += 1;
-      
-      }
-    }
-    // console.log(resultObject)
-    return resultObject;
-   
+  takeAmountFromWithdraw(amount, withdraw) {
+      withdraw -= amount;
+      return withdraw;
   },
+
+  checkWithdrawCanSubtract( amount, withdraw ) {
+    if(withdraw - amount >= 0){
+      return true;
+    } else {
+      return false
+    }
+  },
+
+  addOneNoteToCount(note, totalCountObject) {
+    totalCountObject[note].count += 1;
+    return totalCountObject;
+  },
+
+  checkOriginalNoteCount(note, notesContainer) {
+    // console.log("original count", notesContainer)
+    if(notesContainer[note].count > 0){
+      return true;
+    } else {
+      return false;
+    }
+  },
+
+  calculateCountNotes( withdraw, notesContainer) {
+    let originalObject = notesContainer;
+    let resultObject = {'10':{ count: 0}, '20':{count: 0}, '50':{count: 0}}
+    
+    while(withdraw > 0){
+      if(this.checkWithdrawCanSubtract(50, withdraw) && this.checkOriginalNoteCount('50', notesContainer)){
+        withdraw = this.takeAmountFromWithdraw( 50, withdraw)
+        resultObject = this.addOneNoteToCount('50', resultObject)
+      }
+      if(this.checkWithdrawCanSubtract(20, withdraw) && this.checkOriginalNoteCount('20', notesContainer)){
+        withdraw = this.takeAmountFromWithdraw( 20, withdraw)
+        resultObject = this.addOneNoteToCount('20', resultObject)
+      }
+      if(this.checkWithdrawCanSubtract(10, withdraw) && this.checkOriginalNoteCount('10', notesContainer)){
+        // breaks here
+        withdraw = this.takeAmountFromWithdraw( 10, withdraw)
+        resultObject = this.addOneNoteToCount('10', resultObject)
+      } else {
+        return resultObject;
+      }
+    
+    // console.log("withdraw amount: ", withdraw)
+    // console.log("note count object: ", resultObject)
+    };
+    return resultObject;
+  },
+
+
+// refactor this to above method
+  // calculateCountNotes( withdraw, notesContainer ) {
+    
+  //   var originalObject = notesContainer;
+  //   var resultObject = {'10':{ count: 0}, '20':{count: 0}, '50':{count: 0}}
+      
+  //   while(withdraw > 0){
+  //     // console.log("withdraw amount start: ", withdraw)
+  //     // console.log("fifty count: ", originalObject['50'].count)
+  //     if(withdraw - 50 < 0 || originalObject['50'].count == 0 || resultObject['50'].count == 2){
+
+  //       if(withdraw - 20 < 0 || originalObject['20'].count == 0 || resultObject['20'].count - resultObject['10'].count >= 1 ){
+
+  //         if(withdraw - 10 < 0 || originalObject['10'].count == 0){
+  //           // console.log("current 20 count", resultObject['20'].count)
+  //           if(withdraw - 20 < 0){
+  //             return false
+  //           } else {
+  //             withdraw -= 20;
+  //             resultObject['20'].count += 1;
+  //           }
+                                    
+  //         } else {
+  //           // console.log("TAKING 10")
+  //           withdraw -= 10;
+  //           resultObject['10'].count += 1;
+  //           // console.log("ten iteration count: ", result['10'].count )
+  //         }  
+
+  //       } else {
+  //         withdraw -= 20;
+  //         resultObject['20'].count += 1;
+  //         // console.log("twenty iteration count: ", result['20'].count);
+  //       }  
+
+  //     } else {
+  //     withdraw -= 50;
+  //     resultObject['50'].count += 1;
+      
+  //     }
+  //   }
+  //   // console.log(resultObject)
+  //   return resultObject;
+   
+  // },
 
   /**
    * subtractCountFromTotal - subtracts the needed count of notes from the initial amount of notes
@@ -279,9 +355,9 @@ const Utils = {
     if ( withdrawnNotes[ '10' ] === undefined ) {
       return;
     }
-    let textResult = '';
+    let textResult = 'You have ';
     _.forOwn( withdrawnNotes, ( value, key ) => {
-      textResult += `key=${key} value=${value.count}`;
+      textResult += `${value.count} £${key} notes, `;
     });
     return textResult;
   }
