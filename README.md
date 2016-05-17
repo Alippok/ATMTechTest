@@ -16,7 +16,7 @@
 *Finally, I wanted to display (to the user) the different notes that were available in the event of some notes not being available
 *This was challenging because I had to find out exactly where in the programme the message object was being set which involved a lot of console.logs to place signposts for myself
 *I also had to make sure the right data got passed to the apporapriate method
-* I then separtated the logic for checking which notes were available and displaying the appropriate string to the user into different methods (setNoteAvaliablity, setAvailableNotes, setAvalibleString, getAvailableNotes)
+*I then separtated the logic for checking which notes were available and displaying the appropriate string to the user into different methods (setNoteAvaliablity, setAvailableNotes, setAvalibleString, getAvailableNotes)
 *Finally, I had some logic in the getValidation method which I decided to put into its own method called setAvailabilityMessage
 *The next steps for this method would be to display the exact number of notes available and/or the reason why they could not be dispensed for the given withdraw amount
 *I would also like to add in commas and an 'and' in the display of notes dispensed and notes available
