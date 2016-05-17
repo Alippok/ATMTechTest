@@ -373,16 +373,24 @@ const Utils = {
     return finalString;
   },
 
+  setAvailabilityMessage(notesContainer) {
+    if(!this.getAvailableNotes(notesContainer).includes("£")){
+      return "There are no notes available";
+    } else {
+      return `The only available notes at this time are ${this.getAvailableNotes(notesContainer)} notes`;
+    }
+  },
+
   getValidationMessage( validationObject, notesContainer ) {
     // console.log("validaton object in getValidationMessage method", validationObject)
     // console.log("got notes container", notesContainer)
     // let availableNotesString = this.getAvailableNotes()
-    let availablityMessage;
-    if(!this.getAvailableNotes(notesContainer).includes("£")){
-      availablityMessage = "There are no notes available"
-    } else {
-      availablityMessage = `The only available notes at this time are ${this.getAvailableNotes(notesContainer)} notes`
-    }
+    let availablityMessage = this.setAvailabilityMessage(notesContainer);
+    // if(!this.getAvailableNotes(notesContainer).includes("£")){
+    //   availablityMessage = "There are no notes available"
+    // } else {
+    //   availablityMessage = `The only available notes at this time are ${this.getAvailableNotes(notesContainer)} notes`
+    // }
     
     
     const validationMsg = {
