@@ -369,7 +369,7 @@ const Utils = {
     let firstString = resultString.concat(this.setAvalibleString('50', resultObject));
     let secondString = firstString.concat(this.setAvalibleString('20', resultObject));
     let finalString = secondString.concat(this.setAvalibleString('10', resultObject));
-    // console.log(finalString)
+    console.log(finalString)
     return finalString;
   },
 
@@ -377,9 +377,17 @@ const Utils = {
     // console.log("validaton object in getValidationMessage method", validationObject)
     // console.log("got notes container", notesContainer)
     // let availableNotesString = this.getAvailableNotes()
+    let availablityMessage;
+    if(!this.getAvailableNotes(notesContainer).includes("£")){
+      availablityMessage = "There are no notes available"
+    } else {
+      availablityMessage = `The only available notes at this time are ${this.getAvailableNotes(notesContainer)} notes`
+    }
+    
+    
     const validationMsg = {
       notesError: 'There is only notes of £10, £20 and £50',
-      notesAvailability: 'The only available notes at this time are  ',
+      notesAvailability: `${availablityMessage}`,
       rangeError: 'Only withdraws between £300 and £10',
       amountError: `Sorry, but the availability is £${validationObject.totalMoney}`,
       balanceError: `Sorry, but your balance is £${validationObject.userMethod}`,

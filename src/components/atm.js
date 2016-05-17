@@ -37,10 +37,10 @@ export default class Atm extends Component {
           count: 0
         },
         20: {
-          count: 0
+          count: 1
         },
         10: {
-          count: 0
+          count: 2
         }
       },
       withdrawnNotes: Utils.displayWithdrawnCount({})
