@@ -250,7 +250,9 @@ describe( 'Utils', () => {
     }); 
 
     describe( 'getAvailableNotes', () => {
-      
+      it( 'is defined', () => {
+        expect( Utils.getAvailableNotes ).not.eq( undefined );
+      });
     });
 
     describe( 'getScreenMessage', () => {
