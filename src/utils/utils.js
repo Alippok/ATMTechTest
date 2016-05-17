@@ -175,6 +175,12 @@ const Utils = {
     }
   },
 
+
+// the method below was added because the withdraw coming into the function in the test was a
+// number BUT in the application, the withdraw coming in was an object so needed to call 
+// withdraw.value on it. However, this broke the tests so I needed a way of checking the type
+// of the withdraw coming in and setting the amount variable (for use within the calculateCountNotes method) accordingly
+
   checkTypeOfWithdraw(withdraw){
     if(typeof withdraw === 'object'){
        return withdraw.value;
@@ -183,14 +189,18 @@ const Utils = {
     }
   },
 
+  // I have added lots of console.log for debuggin purposes; it allows me to see the exact
+  // state of variables and data within those variables in various parts of a method and 
+  // within the wider scope of the app itself
+
   calculateCountNotes( withdraw, notesContainer) {
-    console.log("type of withdraw amount at start of calculateCountNotes: ", typeof withdraw)
+    // console.log("type of withdraw amount at start of calculateCountNotes: ", typeof withdraw)
     let amount = this.checkTypeOfWithdraw(withdraw)
     // console.log("type of withdraw amount in calculateCountNotes method: ", amount)
     let originalObject = notesContainer;
     let resultObject = {'10':{ count: 0}, '20':{count: 0}, '50':{count: 0}}
-    console.log("withdraw amount in calculateCountNotes method: ", amount)
-    console.log("beginning calculating in calculateCountNotes method")
+    // console.log("withdraw amount in calculateCountNotes method: ", amount)
+    // console.log("beginning calculating in calculateCountNotes method")
     while(amount > 0){
       if(this.checkWithdrawCanSubtract(50, amount) && this.checkOriginalNoteCount('50', notesContainer)){
         amount = this.takeAmountFromWithdraw( 50, amount)
