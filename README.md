@@ -13,12 +13,12 @@
 *You can see in these methods that I have used a lot of console.log; I used these to help me debug the methods to see exactly what state different variables and objects have at each point in the methods and application. I would now remove those from the methods but have left them in to demonstrate my thinking proccess and problem solving approach
 
 *Finally, I wanted to display (to the user) the different notes that were available in the event of some notes not being available
-   This was challenging because I had to find out exactly where in the programme the message object was being set which involved a lot of console.logs to place signposts for myself
-   I also had to make sure the right data got passed to the apporapriate method
-   I then separtated the logic for checking which notes were available and displaying the appropriate string to the user into different methods (setNoteAvaliablity, setAvailableNotes, setAvalibleString, getAvailableNotes)
-   Finally, I had some logic in the getValidation method which I decided to put into its own method called setAvailabilityMessage
-   The next steps for this method would be to display the exact number of notes available and/or the reason why they could not be dispensed for the given withdraw amount
-   I would also like to add in commas and an 'and' in the display of notes dispensed and notes available
+    *This was challenging because I had to find out exactly where in the programme the message object was being set which involved a lot of console.logs to place signposts for myself
+    *I also had to make sure the right data got passed to the apporapriate method
+    * I then separtated the logic for checking which notes were available and displaying the appropriate string to the user into different methods (setNoteAvaliablity, setAvailableNotes, setAvalibleString, getAvailableNotes)
+    *Finally, I had some logic in the getValidation method which I decided to put into its own method called setAvailabilityMessage
+    *The next steps for this method would be to display the exact number of notes available and/or the reason why they could not be dispensed for the given withdraw amount
+    *I would also like to add in commas and an 'and' in the display of notes dispensed and notes available
 
 *Unfortunately, I did not manage to complete the wireframes styling of the application but I have completed all other parts of the checklist. I enjoyed the challenge of this tech-test and has really challenged my understanding of React, abstraction and problem solving in programming
 
