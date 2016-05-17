@@ -70,7 +70,7 @@ const Utils = {
    *
    */
   compareNotesAmounts(requiredNotesAmount, currentNotesAmount) {
-    if(currentNotesAmount - requiredNotesAmount > 0){
+    if(currentNotesAmount - requiredNotesAmount >= 0){
       return true;
     } else {
       return false;
@@ -81,35 +81,32 @@ const Utils = {
     const results = []
     const container = notesContainer;
     const requiredNotes = this.calculateCountNotes(withdraw, notesContainer);
-    if(requiredNotes == false){
+   
+    const requiredTenNotes = requiredNotes['10'].count;
+    const requiredTwentyNotes = requiredNotes['20'].count;
+    const requiredFiftyNotes = requiredNotes['50'].count;
+    
+    const currentTenNotes = container['10'].count;
+    const currentTwentyNotes = container['20'].count;
+    const currentFiftyNotes = container['50'].count;
+      // console.log("current ten notes: ", currentTenNotes)
+      // console.log("current twenty notes: ", currentTwentyNotes)
+      // console.log("current fifty notes: ", currentFiftyNotes)
+
+      // console.log("required ten notes: ", requiredTenNotes)
+    results.push(this.compareNotesAmounts(requiredTenNotes, currentTenNotes))
+    results.push(this.compareNotesAmounts(requiredTwentyNotes, currentTwentyNotes))
+    results.push(this.compareNotesAmounts(requiredFiftyNotes, currentFiftyNotes))
+
+    console.log(results)
+    if(results.includes(false)){
       return false;
     } else {
-      const requiredTenNotes = requiredNotes['10'].count;
-      const requiredTwentyNotes = requiredNotes['20'].count;
-      const requiredFiftyNotes = requiredNotes['50'].count;
-    
-      const currentTenNotes = container['10'].count;
-      const currentTwentyNotes = container['20'].count;
-      const currentFiftyNotes = container['50'].count;
-      console.log("current ten notes: ", currentTenNotes)
-      console.log("current twenty notes: ", currentTwentyNotes)
-      console.log("current fifty notes: ", currentFiftyNotes)
-
-      console.log("required ten notes: ", requiredTenNotes)
-
-      results.push(this.compareNotesAmounts(requiredTenNotes, currentTenNotes))
-      results.push(this.compareNotesAmounts(requiredTwentyNotes, currentTwentyNotes))
-      results.push(this.compareNotesAmounts(requiredFiftyNotes, currentFiftyNotes))
-
-      console.log(results)
-      if(results.includes(false)){
-        return false;
-       } else {
-        return true;
-      }
+      return true;
     }
-    
   },
+    
+  
 
   /** TODO Implement this method
    *

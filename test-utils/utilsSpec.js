@@ -263,12 +263,12 @@ describe( 'Utils', () => {
 
       });
 
-      it( 'should return false if not enough notes for withdraw amount £30', () => {
-        notesContainer[ '10' ].count = 0;
-        notesContainer[ '20' ].count = 0;
-        expect( Utils.areAnyNotesLeft(30, notesContainer)).to.eq( false );
+      // it( 'should return false if not enough notes for withdraw amount £30', () => {
+      //   notesContainer[ '10' ].count = 0;
+      //   notesContainer[ '20' ].count = 0;
+      //   expect( Utils.areAnyNotesLeft(30, notesContainer)).to.eq( false );
 
-      });
+      // });
 
     });
 
