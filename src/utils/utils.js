@@ -181,19 +181,42 @@ const Utils = {
       if(this.checkWithdrawCanSubtract(50, withdraw) && this.checkOriginalNoteCount('50', notesContainer)){
         withdraw = this.takeAmountFromWithdraw( 50, withdraw)
         resultObject = this.addOneNoteToCount('50', resultObject)
+        // console.log("Count 1: ", resultObject)
       }
       if(this.checkWithdrawCanSubtract(20, withdraw) && this.checkOriginalNoteCount('20', notesContainer)){
         withdraw = this.takeAmountFromWithdraw( 20, withdraw)
         resultObject = this.addOneNoteToCount('20', resultObject)
+        // console.log("Count 2: ", resultObject)
       }
       if(this.checkWithdrawCanSubtract(10, withdraw) && this.checkOriginalNoteCount('10', notesContainer)){
         // breaks here
         withdraw = this.takeAmountFromWithdraw( 10, withdraw)
         resultObject = this.addOneNoteToCount('10', resultObject)
-      } else {
+        // console.log("Count 3: ", resultObject)
+        // need to go back into the 50 loop here to deal with a 0 current 10note count
+      } else if(this.checkWithdrawCanSubtract(50, withdraw) && this.checkOriginalNoteCount('50', notesContainer)){
+        withdraw = this.takeAmountFromWithdraw( 50, withdraw)
+        resultObject = this.addOneNoteToCount('50', resultObject)
+        // console.log("Count 4: ", resultObject)
+
+        if(this.checkWithdrawCanSubtract(20, withdraw) && this.checkOriginalNoteCount('20', notesContainer)){
+          withdraw = this.takeAmountFromWithdraw( 20, withdraw)
+          resultObject = this.addOneNoteToCount('20', resultObject)
+          // console.log("Count 2: ", resultObject)
+        }
+        if(this.checkWithdrawCanSubtract(50, withdraw) && this.checkOriginalNoteCount('50', notesContainer)){
+              withdraw = this.takeAmountFromWithdraw( 50, withdraw)
+              resultObject = this.addOneNoteToCount('50', resultObject)
+              // console.log("Count 4: ", resultObject)
+        } else if (this.checkWithdrawCanSubtract(20, withdraw) && this.checkOriginalNoteCount('20', notesContainer)){
+            withdraw = this.takeAmountFromWithdraw( 20, withdraw)
+            resultObject = this.addOneNoteToCount('20', resultObject)
+            // console.log("Count 2: ", resultObject)
+        }
+      }
+      else {
         return resultObject;
       }
-    
     // console.log("withdraw amount: ", withdraw)
     // console.log("note count object: ", resultObject)
     };
@@ -201,7 +224,10 @@ const Utils = {
   },
 
 
-// refactor this to above method
+// refactor below method to above method. However, the above method still quite messy with
+// nested loops.
+
+
   // calculateCountNotes( withdraw, notesContainer ) {
     
   //   var originalObject = notesContainer;
@@ -260,7 +286,7 @@ const Utils = {
     const notes50Used = _.get( withdrawnNotes, '50' );
     const notes20Used = _.get( withdrawnNotes, '20' );
     const notes10Used = _.get( withdrawnNotes, '10' );
-    // console.log("withdrawn notes", withdrawnNotes)
+    console.log("withdrawn notes", withdrawnNotes)
     const notes50available = _.get( availableNotes, '50' );
     const notes20available = _.get( availableNotes, '20' );
     const notes10available = _.get( availableNotes, '10' );
