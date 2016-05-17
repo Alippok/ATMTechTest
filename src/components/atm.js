@@ -108,9 +108,10 @@ export default class Atm extends Component {
    * @return {Object} - New Component's state
    */
   displayValidationMessage( validationObject ) {
+    
     const newState = React.addons.update( this.state, {
       messages: {
-        validation: { $set: Utils.getValidationMessage( validationObject ) },
+        validation: { $set: Utils.getValidationMessage( validationObject, this.state.notesContainer ) },
         success: { $set: '' }
       },
       showValidationMessage: { $set: false },
@@ -181,7 +182,7 @@ export default class Atm extends Component {
        * to get the correct validation
        */
       {
-        condition: !Utils.areAnyNotesLeft( withdraw, notesContainer ),
+        condition: !Utils.areAnyNotesLeft( amount, notesContainer ),
         message: 'notesAvailability'
       },
       {
@@ -205,13 +206,15 @@ export default class Atm extends Component {
    */
   isWithdrawValid( withdraw ) {
     const amount = Number( withdraw );
-    console.log("amount in isWithdrawValid method: ", withdraw)
+    // console.log("amount in isWithdrawValid method: ", withdraw)
     // Creates validation error object
     const getError = ( scenario ) => {
       if ( !scenario ) {
         return;
       }
 
+      
+      
       const { condition, ...other } = scenario;
 
       return {

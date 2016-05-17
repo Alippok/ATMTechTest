@@ -81,12 +81,12 @@ const Utils = {
   },
 
   areAnyNotesLeft( withdraw, notesContainer ) {
-    console.log("withdraw amount in areAnyNotesLeft method: ", withdraw.value)
+    // console.log("withdraw amount in areAnyNotesLeft method: ", withdraw.value)
     const results = []
     const container = notesContainer;
-    console.log("current notes in areAnyNotesLeft method: ", container)
+    // console.log("current notes in areAnyNotesLeft method: ", container)
     const requiredNotes = this.calculateCountNotes(withdraw, notesContainer);
-    console.log("required notes in areAnyNotesLeft method: ", requiredNotes)
+    // console.log("required notes in areAnyNotesLeft method: ", requiredNotes)
     const requiredTenNotes = requiredNotes['10'].count;
     const requiredTwentyNotes = requiredNotes['20'].count;
     const requiredFiftyNotes = requiredNotes['50'].count;
@@ -336,7 +336,27 @@ const Utils = {
    *
    * @return {String} - Message that depends on the object passed
    */
-  getValidationMessage( validationObject ) {
+   setNoteAvaliablity(note, notesContainer){
+    if(notesContainer[note].count > 0){
+      return true;
+    } else {
+      return false;
+    }
+   },
+
+   setAvailableNotes(notesContainer) {
+    let resultObject = {'10':{available: null}, '20':{available: null}, '50':{available: null} }
+        
+    resultObject['50'].available = this.setNoteAvaliablity('50', notesContainer);
+    resultObject['20'].available = this.setNoteAvaliablity('20', notesContainer);
+    resultObject['10'].available = this.setNoteAvaliablity('10', notesContainer);
+    
+    return resultObject;
+   },
+
+  getValidationMessage( validationObject, notesContainer ) {
+    // console.log("validaton object in getValidationMessage method", validationObject)
+    // console.log("got notes container", notesContainer)
     const validationMsg = {
       notesError: 'There is only notes of £10, £20 and £50',
       notesAvailability: 'The only available notes at this time are  ',
@@ -346,7 +366,7 @@ const Utils = {
       withdrawError: 'You are not providing a valid withdraw',
       withdrawValidMsg: 'We are dealing with your request'
     };
-
+    // console.log("validationMsg object: ", validationMsg)
     return validationMsg[ validationObject.message ];
   },
 

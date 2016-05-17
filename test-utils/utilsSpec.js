@@ -161,7 +161,6 @@ describe( 'Utils', () => {
         expect( Utils.calculateCountNotes( withdraw, notesContainer )).to.eql( result );
       });
 
-      //check 200 withdraw
       
       it( 'returns object with 0 count for each note type if no notes available, £30', () => {
         const withdraw = 30;
@@ -233,6 +232,25 @@ describe( 'Utils', () => {
         const message = Utils.getValidationMessage( mockedValidation );
         expect( Utils.getValidationMessage( mockedValidation )).to.eq( message );
       });
+    });
+
+    describe( 'setAvailableNotes', () => {
+      it( 'is defined', () => {
+        expect( Utils.setAvailableNotes ).not.eq( undefined );
+      });
+      it( 'returns an object', () => {
+        expect( Utils.setAvailableNotes(notesContainer) ).to.be.an( 'Object');
+      });
+      it( 'returns an object with property 10 available set to true and other notes avalibale set to false if count is 0', () => {
+        notesContainer['50'].count = 0;
+        notesContainer['20'].count = 0;
+        const resultObject = {'10':{available: true}, '20':{available: false}, '50':{available:false}}
+        expect( Utils.setAvailableNotes(notesContainer)).to.deep.equal(resultObject);
+      });
+    }); 
+
+    describe( 'getAvailableNotes', () => {
+      
     });
 
     describe( 'getScreenMessage', () => {
