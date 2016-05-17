@@ -376,7 +376,7 @@ const Utils = {
   getValidationMessage( validationObject, notesContainer ) {
     // console.log("validaton object in getValidationMessage method", validationObject)
     // console.log("got notes container", notesContainer)
-
+    // let availableNotesString = this.getAvailableNotes()
     const validationMsg = {
       notesError: 'There is only notes of £10, £20 and £50',
       notesAvailability: 'The only available notes at this time are  ',
