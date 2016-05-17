@@ -10,7 +10,6 @@
 
 
 *After this, I tried implementing the areAnyNotesLeft method. This again started off quite messy and was particularly challenging to implement but after pulling some of the logic out and putting in a separate method, reads a bit better
-
 *You can see in these methods that I have used a lot of console.log; I used these to help me debug the methods to see exactly what state different variables and objects have at each point in the methods and application
 *I would now remove those from the methods but have left them in to demonstrate my thinking proccess and problem solving approach
 
