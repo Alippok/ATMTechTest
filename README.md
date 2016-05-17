@@ -2,11 +2,11 @@
 
 * Began work by cloning from GutHub repo and then creating my own repo
 * I then moved onto looking at the different components and sketching out a rough design of the 'flow' of the app
-*I then began work on passing each test in turn
-*The most challenging part of this challenge was implementing the calculateCountNotes method
->I first used the commented out method which was very messy but managed to get the right count of notes for differnt withdraw amounts
->However, I then decided to pull out some of the loops and functionality and put them into separte methods on the utils class. 
->This seemed a lot cleaner but there is still more that I would separate out into different methods
+* I then began work on passing each test in turn
+* The most challenging part of this challenge was implementing the calculateCountNotes method
+> I first used the commented out method which was very messy but managed to get the right count of notes for differnt withdraw amounts
+> However, I then decided to pull out some of the loops and functionality and put them into separte methods on the utils class. 
+> This seemed a lot cleaner but there is still more that I would separate out into different methods
 
 *After this, I tried implementing the areAnyNotesLeft method. This again started off quite messy and was particularly challenging to implement but after pulling some of the logic out and putting in a separate method, reads a bit better
 
@@ -21,6 +21,11 @@
 >I would also like to add in commas and an 'and' in the display of notes dispensed and notes available
 
 *Unfortunately, I did not manage to complete the wireframes styling of the application but I have completed all other parts of the checklist. I enjoyed the challenge of this tech-test and has really challenged my understanding of React, abstraction and problem solving in programming
+
+*To run the code, first MAKE SURE you are in the DEVELOP BRANCH of the project (run 'git checkout develop' to move to that branch)
+*Then run 'npm install' in the app's root directory to install everything need to run the app
+*Run 'npm start' in the to start the application
+*Finally, go to your localhost in your web-browser to use the application
 
 
 ## Prerequisites
