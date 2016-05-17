@@ -160,6 +160,9 @@ describe( 'Utils', () => {
         const result = { 50: { count: 0 }, 20: { count: 1 }, 10: { count: 1 } };
         expect( Utils.calculateCountNotes( withdraw, notesContainer )).to.eql( result );
       });
+
+      //check 200 withdraw
+      
       it( 'returns object with 0 count for each note type if no notes available, £30', () => {
         const withdraw = 30;
         notesContainer[ '50' ].count = 0;

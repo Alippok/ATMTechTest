@@ -34,10 +34,10 @@ export default class Atm extends Component {
       withdrawAmount: '',
       notesContainer: {
         50: {
-          count: 8
+          count: 0
         },
         20: {
-          count: 4
+          count: 0
         },
         10: {
           count: 0
@@ -205,7 +205,7 @@ export default class Atm extends Component {
    */
   isWithdrawValid( withdraw ) {
     const amount = Number( withdraw );
-
+    console.log("amount in isWithdrawValid method: ", withdraw)
     // Creates validation error object
     const getError = ( scenario ) => {
       if ( !scenario ) {

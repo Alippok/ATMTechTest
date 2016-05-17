@@ -70,18 +70,23 @@ const Utils = {
    *
    */
   compareNotesAmounts(requiredNotesAmount, currentNotesAmount) {
-    if(currentNotesAmount - requiredNotesAmount >= 0){
-      return true;
-    } else {
-      return false;
+    if(currentNotesAmount == 0){
+      return false
     }
+     else if(currentNotesAmount - requiredNotesAmount >= 0){
+      return true;
+      } else {
+       return false;
+     }
   },
 
   areAnyNotesLeft( withdraw, notesContainer ) {
+    console.log("withdraw amount in areAnyNotesLeft method: ", withdraw.value)
     const results = []
     const container = notesContainer;
+    console.log("current notes in areAnyNotesLeft method: ", container)
     const requiredNotes = this.calculateCountNotes(withdraw, notesContainer);
-   
+    console.log("required notes in areAnyNotesLeft method: ", requiredNotes)
     const requiredTenNotes = requiredNotes['10'].count;
     const requiredTwentyNotes = requiredNotes['20'].count;
     const requiredFiftyNotes = requiredNotes['50'].count;
@@ -170,43 +175,55 @@ const Utils = {
     }
   },
 
+  checkTypeOfWithdraw(withdraw){
+    if(typeof withdraw === 'object'){
+       return withdraw.value;
+    } else {
+      return withdraw;
+    }
+  },
+
   calculateCountNotes( withdraw, notesContainer) {
+    console.log("type of withdraw amount at start of calculateCountNotes: ", typeof withdraw)
+    let amount = this.checkTypeOfWithdraw(withdraw)
+    // console.log("type of withdraw amount in calculateCountNotes method: ", amount)
     let originalObject = notesContainer;
     let resultObject = {'10':{ count: 0}, '20':{count: 0}, '50':{count: 0}}
-    
-    while(withdraw > 0){
-      if(this.checkWithdrawCanSubtract(50, withdraw) && this.checkOriginalNoteCount('50', notesContainer)){
-        withdraw = this.takeAmountFromWithdraw( 50, withdraw)
+    console.log("withdraw amount in calculateCountNotes method: ", amount)
+    console.log("beginning calculating in calculateCountNotes method")
+    while(amount > 0){
+      if(this.checkWithdrawCanSubtract(50, amount) && this.checkOriginalNoteCount('50', notesContainer)){
+        amount = this.takeAmountFromWithdraw( 50, amount)
         resultObject = this.addOneNoteToCount('50', resultObject)
         // console.log("Count 1: ", resultObject)
       }
-      if(this.checkWithdrawCanSubtract(20, withdraw) && this.checkOriginalNoteCount('20', notesContainer)){
-        withdraw = this.takeAmountFromWithdraw( 20, withdraw)
+      if(this.checkWithdrawCanSubtract(20, amount) && this.checkOriginalNoteCount('20', notesContainer)){
+        amount = this.takeAmountFromWithdraw( 20, amount)
         resultObject = this.addOneNoteToCount('20', resultObject)
         // console.log("Count 2: ", resultObject)
       }
-      if(this.checkWithdrawCanSubtract(10, withdraw) && this.checkOriginalNoteCount('10', notesContainer)){
+      if(this.checkWithdrawCanSubtract(10, amount) && this.checkOriginalNoteCount('10', notesContainer)){
         // breaks here
-        withdraw = this.takeAmountFromWithdraw( 10, withdraw)
+        amount = this.takeAmountFromWithdraw( 10, amount)
         resultObject = this.addOneNoteToCount('10', resultObject)
         // console.log("Count 3: ", resultObject)
         // need to go back into the 50 loop here to deal with a 0 current 10note count
-      } else if(this.checkWithdrawCanSubtract(50, withdraw) && this.checkOriginalNoteCount('50', notesContainer)){
-        withdraw = this.takeAmountFromWithdraw( 50, withdraw)
+      } else if(this.checkWithdrawCanSubtract(50, amount) && this.checkOriginalNoteCount('50', notesContainer)){
+        amount = this.takeAmountFromWithdraw( 50, amount)
         resultObject = this.addOneNoteToCount('50', resultObject)
         // console.log("Count 4: ", resultObject)
 
-        if(this.checkWithdrawCanSubtract(20, withdraw) && this.checkOriginalNoteCount('20', notesContainer)){
-          withdraw = this.takeAmountFromWithdraw( 20, withdraw)
+        if(this.checkWithdrawCanSubtract(20, amount) && this.checkOriginalNoteCount('20', notesContainer)){
+          amount = this.takeAmountFromWithdraw( 20, amount)
           resultObject = this.addOneNoteToCount('20', resultObject)
           // console.log("Count 2: ", resultObject)
         }
-        if(this.checkWithdrawCanSubtract(50, withdraw) && this.checkOriginalNoteCount('50', notesContainer)){
-              withdraw = this.takeAmountFromWithdraw( 50, withdraw)
+        if(this.checkWithdrawCanSubtract(50, amount) && this.checkOriginalNoteCount('50', notesContainer)){
+              amount = this.takeAmountFromWithdraw( 50, amount)
               resultObject = this.addOneNoteToCount('50', resultObject)
               // console.log("Count 4: ", resultObject)
-        } else if (this.checkWithdrawCanSubtract(20, withdraw) && this.checkOriginalNoteCount('20', notesContainer)){
-            withdraw = this.takeAmountFromWithdraw( 20, withdraw)
+        } else if (this.checkWithdrawCanSubtract(20, amount) && this.checkOriginalNoteCount('20', notesContainer)){
+            amount = this.takeAmountFromWithdraw( 20, amount)
             resultObject = this.addOneNoteToCount('20', resultObject)
             // console.log("Count 2: ", resultObject)
         }
