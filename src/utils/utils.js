@@ -336,15 +336,15 @@ const Utils = {
    *
    * @return {String} - Message that depends on the object passed
    */
-   setNoteAvaliablity(note, notesContainer){
+  setNoteAvaliablity(note, notesContainer){
     if(notesContainer[note].count > 0){
       return true;
     } else {
       return false;
     }
-   },
+  },
 
-   setAvailableNotes(notesContainer) {
+  setAvailableNotes(notesContainer) {
     let resultObject = {'10':{available: null}, '20':{available: null}, '50':{available: null} }
         
     resultObject['50'].available = this.setNoteAvaliablity('50', notesContainer);
@@ -352,11 +352,26 @@ const Utils = {
     resultObject['10'].available = this.setNoteAvaliablity('10', notesContainer);
     
     return resultObject;
-   },
+  },
 
-   getAvailableNotes(notesContainer) {
+  setAvalibleString(note, resultObject) {
+    if(resultObject[note].available){
+      return "£" + note + " ";
+    } else {
+      return "";
+    }
+  },
 
-   },
+  getAvailableNotes(notesContainer) {
+    let resultObject = this.setAvailableNotes(notesContainer)
+    let resultString = "";
+    // console.log(typeof this.setAvalibleString('10', resultObject))
+    let firstString = resultString.concat(this.setAvalibleString('50', resultObject));
+    let secondString = firstString.concat(this.setAvalibleString('20', resultObject));
+    let finalString = secondString.concat(this.setAvalibleString('10', resultObject));
+    // console.log(finalString)
+    return finalString;
+  },
 
   getValidationMessage( validationObject, notesContainer ) {
     // console.log("validaton object in getValidationMessage method", validationObject)

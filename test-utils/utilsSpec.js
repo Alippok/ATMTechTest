@@ -253,6 +253,12 @@ describe( 'Utils', () => {
       it( 'is defined', () => {
         expect( Utils.getAvailableNotes ).not.eq( undefined );
       });
+      it( 'returns a String of only notes that were avalibale', () => {
+        notesContainer['50'].count = 0;
+        notesContainer['20'].count = 0;
+        const result = "£10 "
+        expect( Utils.getAvailableNotes(notesContainer)).to.deep.equal(result);
+      });
     });
 
     describe( 'getScreenMessage', () => {
