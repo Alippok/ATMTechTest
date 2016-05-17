@@ -8,7 +8,7 @@
 * The most challenging part of this challenge was implementing the calculateCountNotes method
 * I first used the commented out method which was very messy but managed to get the right count of notes for different withdraw amounts
 * However, I then decided to pull out some of the loops and functionality and put them into separte methods on the utils class
-*This seemed a lot cleaner but there is still more that I would separate out into different methods
+* This seemed a lot cleaner but there is still more that I would separate out into different methods
 
 
 * After this, I tried implementing the areAnyNotesLeft method. This again started off quite messy and was particularly challenging to implement but after pulling some of the logic out and putting in a separate method, reads a bit better
