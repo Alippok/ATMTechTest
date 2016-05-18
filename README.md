@@ -2,6 +2,9 @@
 
 * Began work by cloning from GutHub repo and then creating my own repo
 * I then moved onto looking at the different components and sketching out a rough design of the 'flow' of the app
+* Trying to follow and understand a completed codebase was a challenging and interesting exercise as it took time to find the starting point, follow data around, find out when different methods were being called and what state objects were in at different parts of the application
+* I used a lot of console logging to aid me at this point because it allowed me to view what was going on
+* I found it extremely beneficial to spend time mapping out the basic flow of the application as I could then use this knowledge for when I was implementing new methods
 
 ## Tests
 * I then began work on passing each test in turn
